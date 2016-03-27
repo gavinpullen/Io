@@ -9,21 +9,21 @@ via a process of cloning existing objects that serve as prototypes
 ```Io
 "Hello World" print
 ```
-// The "Hello World" object - which happens to be a string - is being sent the message print.   
-// Receivers go on the left and messages on the right
+The "Hello World" object - which happens to be a string - is being sent the message print.   
+Receivers go on the left and messages on the right
 
 ## Create a simple object and show how to use it
 ```Io
 Account := Object clone
 ```
-// Account is defined as a clone of Object - sending a clone message to Object prototype
+Account is defined as a clone of Object - sending a clone message to Object prototype
 ```Io
 Account balance := 0
 ```
-// := the initialization assignment operator creates a new slot on Account called balance   
-// Account holds one slot named balance with the value of zero   
-// A slot associates a value to a name within the context of a prototype   
-// Slots can contain values or methods   
+:= the initialization assignment operator creates a new slot on Account called balance   
+Account holds one slot named balance with the value of zero   
+A slot associates a value to a name within the context of a prototype   
+Slots can contain values or methods   
 ```Io
 Account deposit := method(v, balance = balance + v)
 Account withdraw := method(v, balance = balance - v)
@@ -39,18 +39,54 @@ i := 1
 while(i <= 10, i println; i = i + 1);  
 for(i, 1, 10, i println);
 ```
-// A while loop takes a condition and a message to evaluate - a ; conactenates two distince messages   
-// The for loop takes name of counter, the first value, the last value and a message sender  
+A while loop takes a condition and a message to evaluate - a ; conactenates two distince messages   
+The for loop takes name of counter, the first value, the last value and a message sender  
 ```Io
  for(i, 1, 10, 2, i println, "extra argument");
 ```
-\\ With an optional increment and extra argument
-\\ Remove the optional increment and your extra message becomes the message - everything shifted to the left   
-\\ and your working in steps of i println, which returns i.
+With an optional increment and extra argument.   
+Remove the optional increment and your extra message becomes the message - everything shifted to the left     
+and your working in steps of i println, which returns i.   
 ```Io
 if(condition, true code, false code)
 ```
-\\ The if control structure is implemented as a function   
-\\ 
+The if control structure is implemented as a function   
+
+## Messages
+A message has 3 components: the sender, the target and the arguments.
+The sender sends the message to the target.
+The target executes the message.
+The **call** method gives you access to the meta information about any message.
+
+***Example***   
+The postOffice gets messages and the mailer delivers them
+```Io
+postOffice := Object clone
+postOffice packageSender := method(call sender)
+```
+Create a mailer to deliver a message
+```Io
+mailer := Object clone
+mailer deliver := method(postOffice packageSender)
+```
+There is one slot, the deliver slot, that sends a packageSender message to postOffice.   
+Now, I can have a mailer deliver a message   
+```Io
+mailer deliver
+```
+The deliver method is the object that sent the message. We can also get the target
+```Io
+postOffice messageTarget := method(call target)
+postOffice messageTarget
+```
+The target is the postOffice, as you can see from the slot names.
+Get the original message names and arguments:
+```Io
+postOffice messageArgs := method(call message arguments)
+postOffice messageArgs("one", 2, :three)
+postOffice messageName
+
+
+
 
 
