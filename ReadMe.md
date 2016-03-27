@@ -33,3 +33,24 @@ myAccount show
 myAccount deposit(10)
 myAccount show
 ```
+## Conditionals and Loops
+```Io
+i := 1
+while(i <= 10, i println; i = i + 1);  
+for(i, 1, 10, i println);
+```
+// A while loop takes a condition and a message to evaluate - a ; conactenates two distince messages   
+// The for loop takes name of counter, the first value, the last value and a message sender  
+```Io
+ for(i, 1, 10, 2, i println, "extra argument");
+```
+\\ With an optional increment and extra argument
+\\ Remove the optional increment and your extra message becomes the message - everything shifted to the left   
+\\ and your working in steps of i println, which returns i.
+```Io
+if(condition, true code, false code)
+```
+\\ The if control structure is implemented as a function   
+\\ 
+
+
