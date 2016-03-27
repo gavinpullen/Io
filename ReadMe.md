@@ -52,39 +52,33 @@ if(condition, true code, false code)
 ```
 The if control structure is implemented as a function   
 
-## Messages
-A message has 3 components: the sender, the target and the arguments.
-The sender sends the message to the target.
-The target executes the message.
-The **call** method gives you access to the meta information about any message.
+## Messages   
+**When does Io compute a message?**   
+Most languages pass arguments as values on stacks.   
+Java computes each value of a parameter first and then places those values on the stack.   
+Io doesnt.   
+It passes the message itself and the context.   
+Then, the recievers evaluate the message.  
+***Example***
+```Io
+unless := method(
+    (call sender doMessage(call message argAt(0))) ifFalse(
+    call sender doMessage(call message argAt(1))) ifTrue(
+    call sender doMessage(call message argAt(3)))
+)
 
-***Example***   
-The postOffice gets messages and the mailer delivers them
-```Io
-postOffice := Object clone
-postOffice packageSender := method(call sender)
+unless(1 ==2, write("One is not two\n"), write("one is two"))
 ```
-Create a mailer to deliver a message
-```Io
-mailer := Object clone
-mailer deliver := method(postOffice packageSender)
-```
-There is one slot, the deliver slot, that sends a packageSender message to postOffice.   
-Now, I can have a mailer deliver a message   
-```Io
-mailer deliver
-```
-The deliver method is the object that sent the message. We can also get the target
-```Io
-postOffice messageTarget := method(call target)
-postOffice messageTarget
-```
-The target is the postOffice, as you can see from the slot names.
-Get the original message names and arguments:
-```Io
-postOffice messageArgs := method(call message arguments)
-postOffice messageArgs("one", 2, :three)
-postOffice messageName
+doMessage executes an arbitrary message.    
+Io is interpreting the message parameters but delaying binding and exceution.    
+In a typical object-oriented language:   
+    - interpreter or compiler would compute all the arguments
+    - including both code blocks
+    - place the return values on the stack.
+    
+
+
+
 
 
 
