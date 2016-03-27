@@ -11,3 +11,25 @@ via a process of cloning existing objects that serve as prototypes
 ```
 // The "Hello World" object - which happens to be a string - is being sent the message print.   
 // Receivers go on the left and messages on the right
+
+## Create a simple object and show how to use it
+```Io
+Account := Object clone
+```
+// Account is defined as a clone of Object - sending a clone message to Object prototype
+```Io
+Account balance := 0
+```
+// := the initialization assignment operator creates a new slot on Account called balance   
+// Account holds one slot named balance with the value of zero   
+// A slot associates a value to a name within the context of a prototype   
+// Slots can contain values or methods   
+```Io
+Account deposit := method(v, balance = balance + v)
+Account withdraw := method(v, balance = balance - v)
+Account show := method(writeln("Account balance: $", balance))
+myAccount := Account clone
+myAccount show
+myAccount deposit(10)
+myAccount show
+```
