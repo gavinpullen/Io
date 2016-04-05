@@ -1,0 +1,67 @@
+// Io programming language List example
+// followed by my JavaScript List implementation
+a := List clone
+a = List.clone()
+
+a := list(33, "a")
+a = list(33, "a")
+
+a append("b")
+a.append("b")
+==> list(33, "a", "b")
+
+a size
+a.size
+==> 3
+
+a at(1)
+a.at(1)
+==> "a"
+
+a atPut(2, "foo")
+a.atPut(2, "foo")
+==> list(33, "a", "foo", "b")
+
+a atPut(6, "Fred")
+a.atPut(6, "Fred")
+==> Exception: index out of bounds
+
+a remove("foo")
+a.remove("foo")
+==> list(33, "a", "b")
+
+a atPut(2, "foo")
+a.atPut(2, "foo")
+==> list(33, "a", "foo", "56")
+
+a := list(65, 21, 122)
+a = list(65, 21, 122);
+
+a foreach(i, v, write(i, ":", v, ", "))
+a.foreach(function(i, v){alert(i + ":" + v + ", ")})
+==> 0:65, 1:21, 2:122,
+
+a foreach(v, v println)
+a.foreach(function(v){document.writeln(v)})
+==> 65
+21
+122
+
+numbers := list(1, 2, 3, 4, 5, 6)
+numbers = list(1, 2, 3, 4, 5, 6)
+
+numbers select(x, x isOdd)
+numbers.select(function isOdd(x){return !!(x%2)})
+==> list(1, 3, 5)
+
+numbers select(i, x, x isOdd)
+numbers.select(function isOdd(i, x){return !!(x%2)})
+==> list(1, 3, 5)
+
+numbers map(x, x*2)
+numbers.map(function(x){return x*2})
+==> list(2, 4, 6, 8, 10, 12)
+
+numbers map(i, x, x+i)
+numbers.map(function(i, x){return x+i})
+==> list(1, 3, 5, 7, 9, 11)
