@@ -1,0 +1,11 @@
+1. A Fibonacci sequence
+> fib := method(n,  if (n <= 2, 1, fib(n-1) + fib(n-2)))
+
+2. How would you change / to return 0 if the denominator is zero?
+> Number div := Number getSlot("/")
+> Number / := method(n, if(n == 0, 0, self div(n)))
+
+3. Write a program to add up all of the numbers in a two-dimensional array.
+> dimArray := list(list(1,7,9,12), list(6,4,3,2))
+> dimArray flatten sum
+
