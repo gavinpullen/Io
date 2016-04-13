@@ -1,5 +1,8 @@
 - Steve Dekorte invented the Io language in 2002
-- Io is a prototype language like Javascript(every object is a clone of another)
+- Io is a prototype language like Javascript(every object is a clone of another)   
+-- Not compiled into a binary state   
+-- Uses VM to directly interpret and execute Io source code   
+-- Everything is an object   
 - Everything in Io is an object(lists, strings, files even messages!!)
 - Prototype-based is a style of OOP in which behaviour re-use(inheritance) is performed
 via a process of cloning existing objects that serve as prototypes
@@ -11,6 +14,65 @@ via a process of cloning existing objects that serve as prototypes
 ```
 The "Hello World" object - which happens to be a string - is being sent the message print.   
 Receivers go on the left and messages on the right
+
+```Io
+2 + 5
+```
+The message + is being sent to the object 2 with 5 as a parameter.   
+Rewritten as 2 + (5)   
+The + is a method defined on the number object that takes another number as a parameter.   
+
+```Io
+1 + 5 * 8 + 1
+```
+Translates to
+```Io
+1 + (5 * (8) + 1)
+```
+** Messages can be chained **
+```Io
+Date now year
+```
+We send now message to Date object followed by year message which gives the year of current date.   
+-- You can create new custom objects by cloning
+```Io
+person := Object clone
+```
+--Then object can be customised by assigning values to its slots
+```Io
+person name := "Gavin"
+```
+(Think of a slot as a key hash)     
+-- We can also add a method to the object
+```Io
+person welcome := method(writeln("Welcome, ", self name))
+```
+-- Send welcome message to our person object
+```Io
+person welcome
+```
+-- Rename the person to gavin just by assigning it to a new slot
+```Io
+gavin := person
+```
+(Gavin and person are now both referring to the same object)    
+    
+-- How about creating another person?   
+-- We need to just clone the object into another one
+```Io
+john := gavin clone
+```
+-- We customise john cloned from gavin with its name
+```Io
+john name := "John"   
+john welcome
+```
+How its done:-   
+john is cloned from gavin so the clone dispatches its message throught its prototype which is gavin.   
+   
+   
+
+
 
 ## Create a simple object and show how to use it
 ```Io
