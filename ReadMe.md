@@ -29,7 +29,7 @@ Translates to
 ```Io
 1 + (5 * (8) + 1)
 ```
-** Messages can be chained **
+**Messages can be chained**
 ```Io
 Date now year
 ```
