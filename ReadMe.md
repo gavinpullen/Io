@@ -33,36 +33,38 @@ Translates to
 ```Io
 Date now year
 ```
-We send now message to Date object followed by year message which gives the year of current date.   
--- You can create new custom objects by cloning
+We send now message to Date object followed by year message which gives the year of current date.
+       
+You can create new custom objects by cloning
 ```Io
 person := Object clone
 ```
---Then object can be customised by assigning values to its slots
+Then object can be customised by assigning values to its slots
 ```Io
 person name := "Gavin"
 ```
-(Think of a slot as a key hash)     
--- We can also add a method to the object
+(Think of a slot as a key hash)    
+    
+We can also add a method to the object
 ```Io
 person welcome := method(writeln("Welcome, ", self name))
 ```
--- Send welcome message to our person object
+Send welcome message to our person object
 ```Io
 person welcome
 ```
--- Rename the person to gavin just by assigning it to a new slot
+Rename the person to gavin just by assigning it to a new slot
 ```Io
 gavin := person
 ```
 (Gavin and person are now both referring to the same object)    
     
--- How about creating another person?   
--- We need to just clone the object into another one
+How about creating another person?       
+We need to just clone the object into another one
 ```Io
 john := gavin clone
 ```
--- We customise john cloned from gavin with its name
+We customise john cloned from gavin with its name
 ```Io
 john name := "John"   
 john welcome
