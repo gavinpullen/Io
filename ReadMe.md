@@ -1,7 +1,7 @@
 - Steve Dekorte invented the Io language in 2002
 - Io is a prototype language like Javascript(every object is a clone of another)   
--- Not compiled into a binary state   
--- Uses VM to directly interpret and execute Io source code     
+    Not compiled into a binary state   
+    Uses VM to directly interpret and execute Io source code     
 - Everything in Io is an object(lists, strings...)
 - Every interaction with an object is a message
 - Prototype-based is a style of OOP in which behaviour re-use(inheritance) is performed
