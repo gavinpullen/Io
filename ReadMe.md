@@ -71,18 +71,24 @@ How its done:-
 john is cloned from gavin so the clone dispatches its message throught its prototype which is gavin.   
    
 ## Conditionals and Loops
+**if**
 The if message can be used in this form:    
-    // if(<condition>, <do message>, <else do message>)    
-    
- 
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(condition, do message, else do message)    
+Examples:    
 ```Io
-i := 1
-while(i <= 10, i println; i = i + 1);  
-for(i, 1, 10, i println);
+if(a == 10, "a is 10" print)
 ```
-A while loop takes a condition and a message to evaluate    
-a ; conactenates two distinct messages     
+These are the same
+```Io
+if(y < 10, x := y, x := 0)
+x := if(y < 10, y, 0)
+```
+Conditions can also be used like this
+```Io
+if(y < 10) then(x := y) else(x := 2)
+if(y < 10) then(x := y) elseif(y == 11) then(x := 0) else(x := 2)
+```
+**for**    
 The for loop takes name of counter, the first value, the last value and a message sender  
 ```Io
  for(i, 1, 10, 2, i println, "extra argument");
