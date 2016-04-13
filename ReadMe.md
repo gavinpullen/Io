@@ -71,9 +71,11 @@ How its done:-
 john is cloned from gavin so the clone dispatches its message throught its prototype which is gavin.   
    
 ## Conditionals and Loops
-**if**
+**if**   
 The if message can be used in this form:    
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(condition, do message, else do message)    
+```Io
+if(condition, true code, false code)
+```     
 Examples:    
 ```Io
 if(a == 10, "a is 10" print)
@@ -89,24 +91,19 @@ if(y < 10) then(x := y) else(x := 2)
 if(y < 10) then(x := y) elseif(y == 11) then(x := 0) else(x := 2)
 ```
 **for**    
-The for loop takes name of counter, the first value, the last value and a message sender  
+The for loop takes name of counter, the first value, the last value and a message sender 
 ```Io
- for(i, 1, 10, 2, i println, "extra argument");
+for(i, 1, 10, i println)
 ```
-With an optional increment and extra argument.   
-Remove the optional increment and your extra message becomes the message - everything shifted to the left     
-and your working in steps of i println, which returns i.   
+With an optional increment:
 ```Io
-if(condition, true code, false code)
+ for(i, 1, 10, 2, i println);
 ```
-The if control structure is implemented as a function   
-
+## Concurrency
+The main components are coroutines, actors and futures.   
+**Coroutines**    
+The foundation of concurrency is the coroutine. A coroutine provides a way to voluntaily suspend and resume execution of a process. Think of a coroutine as a function with multiple entry and exit points. Each yield will voluntarily suspend the process and transfer to another process.    
     
-
-
-
-
-
-
-
-
+You can fire a message asynchronously by using @ or @@.    
+@ returns a future.    
+@@ returns nil and starts the message in its own thread.
